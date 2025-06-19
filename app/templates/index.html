@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan Interest Rate Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Loan Interest Rate Predictor</h1>
+    <form action="/" method="POST">
+      <div>
+        <label>Loan Amount (USD)</label>
+        <input type="number" step="0.01" name="Loan Amount" value="{{ request.form.get('Loan Amount', '') }}" required />
+      </div>
+
+      <div>
+        <label>Income (USD/year)</label>
+        <input type="number" step="0.01" name="Income" value="{{ request.form.get('Income', '') }}" required />
+      </div>
+
+      <div>
+        <label>Credit Score</label>
+        <input type="number" name="Credit Score" min="300" max="850" value="{{ request.form.get('Credit Score', '') }}" required />
+      </div>
+
+      <div>
+        <label>Loan Term (years)</label>
+        <input type="number" name="Loan Term" min="1" value="{{ request.form.get('Loan Term', '') }}" required />
+      </div>
+
+      <div>
+        <label>Property Value (USD)</label>
+        <input type="number" step="0.01" name="Property Value" value="{{ request.form.get('Property Value', '') }}" required />
+      </div>
+
+      <div>
+        <label>Debt-to-Income Ratio</label>
+        <input type="number" step="0.01" min="0" max="1" name="Debt-to-Income Ratio" value="{{ request.form.get('Debt-to-Income Ratio', '') }}" required />
+      </div>
+
+      <div>
+        <label>Dependents</label>
+        <input type="number" name="Dependents" min="0" max="10" value="{{ request.form.get('Dependents', '') }}" required />
+      </div>
+
+      <div>
+        <label>Employment Type</label>
+        <select name="Employment Type">
+          <option value="Salaried" {% if request.form.get('Employment Type') == 'Salaried' %}selected{% endif %}>Salaried</option>
+          <option value="Self-employed" {% if request.form.get('Employment Type') == 'Self-employed' %}selected{% endif %}>Self-employed</option>
+          <option value="Unemployed" {% if request.form.get('Employment Type') == 'Unemployed' %}selected{% endif %}>Unemployed</option>
+          <option value="Retired" {% if request.form.get('Employment Type') == 'Retired' %}selected{% endif %}>Retired</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Loan Purpose</label>
+        <select name="Loan Purpose">
+          <option value="Home Purchase" {% if request.form.get('Loan Purpose') == 'Home Purchase' %}selected{% endif %}>Home Purchase</option>
+          <option value="Home Improvement" {% if request.form.get('Loan Purpose') == 'Home Improvement' %}selected{% endif %}>Home Improvement</option>
+          <option value="Refinancing" {% if request.form.get('Loan Purpose') == 'Refinancing' %}selected{% endif %}>Refinancing</option>
+          <option value="Other" {% if request.form.get('Loan Purpose') == 'Other' %}selected{% endif %}>Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Marital Status</label>
+        <select name="Marital Status">
+          <option value="Single" {% if request.form.get('Marital Status') == 'Single' %}selected{% endif %}>Single</option>
+          <option value="Married" {% if request.form.get('Marital Status') == 'Married' %}selected{% endif %}>Married</option>
+          <option value="Divorced" {% if request.form.get('Marital Status') == 'Divorced' %}selected{% endif %}>Divorced</option>
+        </select>
+      </div>
+
+      <div class="center">
+        <label>Credit Score Category</label>
+        <select name="Credit Score Category">
+          <option value="Poor" {% if request.form.get('Credit Score Category') == 'Poor' %}selected{% endif %}>Poor</option>
+          <option value="Fair" {% if request.form.get('Credit Score Category') == 'Fair' %}selected{% endif %}>Fair</option>
+          <option value="Good" {% if request.form.get('Credit Score Category') == 'Good' %}selected{% endif %}>Good</option>
+          <option value="Very Good" {% if request.form.get('Credit Score Category') == 'Very Good' %}selected{% endif %}>Very Good</option>
+          <option value="Excellent" {% if request.form.get('Credit Score Category') == 'Excellent' %}selected{% endif %}>Excellent</option>
+        </select>
+      </div>
+
+      <button type="submit">Predict Interest Rate</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <h2>Predicted Interest Rate: {{ prediction }}%</h2>
+      </div>
+    {% endif %}
+  </div>
+
+  <form action="/explain" method="POST">
+  <!-- include hidden inputs -->
+  {% for key, value in request.form.items() %}
+    <input type="hidden" name="{{ key }}" value="{{ value }}">
+  {% endfor %}
+  <button type="submit">Explain Prediction</button>
+</form>
+
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

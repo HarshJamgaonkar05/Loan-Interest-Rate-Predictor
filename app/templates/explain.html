@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Why This Rate?</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Why This Rate?</h1>
+
+    <ul>
+      {% for reason in explanation %}
+        <li>{{ reason }}'</li>
+    <br>
+      {% endfor %}
+    </ul>
+
+    <a href="/" style="color:#00bcd4;">⬅ Back to Prediction</a>
+  </div>
+</body>
+</html>
