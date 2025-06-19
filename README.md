@@ -19,8 +19,9 @@ A full-stack ML web app that predicts personalized loan interest rates based on 
 - Pandas, NumPy, Joblib
 
 ## 📊 Model Comparison (CV-RMSE)
-Model	RMSE
-Linear Regression	0.81
-Random Forest	0.54
-LightGBM	0.49 ✅
+
+- Model	              RMSE
+- Linear Regression	  0.81
+- Random Forest	      0.54
+- LightGBM	          0.49 ✅
 
