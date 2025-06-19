@@ -1,5 +1,3 @@
-# Loan-Interest-Rate-Predictor
-
 #  Loan Interest Rate Predictor
 
 A full-stack ML web app that predicts personalized loan interest rates based on user financial profiles. Built with Flask, LightGBM, and deployed-ready UI.
