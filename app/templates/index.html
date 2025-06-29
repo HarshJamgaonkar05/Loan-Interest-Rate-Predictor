@@ -6,44 +6,56 @@
   <title>Loan Interest Rate Predictor</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
+
+
+
 <body>
   <div class="container">
     <h1>Loan Interest Rate Predictor</h1>
     <form action="/" method="POST">
+
+
       <div>
         <label>Loan Amount (USD)</label>
         <input type="number" step="0.01" name="Loan Amount" value="{{ request.form.get('Loan Amount', '') }}" required />
       </div>
+
 
       <div>
         <label>Income (USD/year)</label>
         <input type="number" step="0.01" name="Income" value="{{ request.form.get('Income', '') }}" required />
       </div>
 
+
       <div>
         <label>Credit Score</label>
         <input type="number" name="Credit Score" min="300" max="850" value="{{ request.form.get('Credit Score', '') }}" required />
       </div>
+
 
       <div>
         <label>Loan Term (years)</label>
         <input type="number" name="Loan Term" min="1" value="{{ request.form.get('Loan Term', '') }}" required />
       </div>
 
+
       <div>
         <label>Property Value (USD)</label>
         <input type="number" step="0.01" name="Property Value" value="{{ request.form.get('Property Value', '') }}" required />
       </div>
+
 
       <div>
         <label>Debt-to-Income Ratio</label>
         <input type="number" step="0.01" min="0" max="1" name="Debt-to-Income Ratio" value="{{ request.form.get('Debt-to-Income Ratio', '') }}" required />
       </div>
 
+
       <div>
         <label>Dependents</label>
         <input type="number" name="Dependents" min="0" max="10" value="{{ request.form.get('Dependents', '') }}" required />
       </div>
+
 
       <div>
         <label>Employment Type</label>
@@ -55,6 +67,7 @@
         </select>
       </div>
 
+
       <div>
         <label>Loan Purpose</label>
         <select name="Loan Purpose">
@@ -65,6 +78,7 @@
         </select>
       </div>
 
+
       <div>
         <label>Marital Status</label>
         <select name="Marital Status">
@@ -74,6 +88,7 @@
         </select>
       </div>
 
+      
       <div class="center">
         <label>Credit Score Category</label>
         <select name="Credit Score Category">
